@@ -8,7 +8,12 @@ class tiktaktoe{
             {'q','q','q'},
             {'q','q','q'}
         };
-    public int [] spieler = {1, 2};
+    public static char[][] Reset = {
+            {'q','q','q'},
+            {'q','q','q'},
+            {'q','q','q'}
+        };
+    public static int [] spieler = {1, 2};
     public int [] runden = new int [2];
     public static int [] Punktzahl = {0, 0};
 
@@ -25,27 +30,31 @@ class tiktaktoe{
     }
 
     public static void play(){
-        boolean x = false;
-        while(x==false){
-            Scanner input = new Scanner(System.in);
-            System.out.println("Welche Stelle willst du Spieler 1?(horizontal)");
-            int spieler1x = input.nextInt();
-            System.out.println("Welche Stelle willst du Spieler 1?(vertikal)");
-            int spieler1y = input.nextInt();
-            Eingabe(1, spieler1x, spieler1y);
-            Ausgabe();
-            x = Gewinn();
-            System.out.println("Welche Stelle willst du Spieler 2?(horizontal)");
-            int spieler2x = input.nextInt();
-            System.out.println("Welche Stelle willst du Spieler 2?(vertikal)");
-            int spieler2y = input.nextInt();
-            Eingabe(2, spieler2x, spieler2y);
-            Ausgabe();
-            x = Gewinn();
+        while (Punktzahl[0] <=5 || Punktzahl[1] <=5 ){
+            boolean x = false;
+            int i=0;
+            while(x==false){
+                Scanner input = new Scanner(System.in);
+                System.out.println("Welche Stelle willst du Spieler "+spieler[i]+"?(horizontal)");
+                int spielerx = input.nextInt();
+                System.out.println("Welche Stelle willst du Spieler "+spieler[i]+"?(vertikal)");
+                int spielery = input.nextInt();
+                Eingabe(spieler[i], spielerx, spielery);
+                Ausgabe();
+                if(i == 0){
+                    i=1;
+                }
+                if(i == 1){
+                    i=0;
+                }
+            }
+            System.out.println("Spieler 1:" + Punktzahl[0] + "Spieler2:" + Punktzahl[1]);
         }
-        System.out.println(Punktzahl[0] + Punktzahl[1]);
-        
     }
+    public static void reset(){
+        Spielfeld=Reset;
+    }
+
     public static void Eingabe(int Spieler, int Stellex, int Stelley){
         char Zeichen = 'q';
         if (Spieler == 1){
@@ -138,30 +147,37 @@ class tiktaktoe{
                 }
             }
 
-            x = Gewinncheck(horizontalx, horizontaly);
+            x = Gewinncheck(horizontalx, horizontaly, x);
             horizontalx = 0;
             horizontaly = 0;
         }
         for (int i = 0; i < 3; i++) {
-            x = Gewinncheck(vertikalx[i], vertikaly[i]);
+            x = Gewinncheck(vertikalx[i], vertikaly[i], x);
         }
-        x = Gewinncheck(diagonölxl, diagonölyl);
-        x = Gewinncheck(diagonölxr, diagonölyr);
+        x = Gewinncheck(diagonölxl, diagonölyl, x);
+        x = Gewinncheck(diagonölxr, diagonölyr, x);
         return x;
     }
 
-    public static boolean Gewinncheck(int x, int y){
+    public static boolean Gewinncheck(int x, int y, boolean k){
+        if (k==true){
+            return true;
+        }
+        System.out.println("Wichtig: " + x + "Wichtig: " + y );
         boolean z=false;
         if (x==3 && y==3){
             System.out.println("wie?");
+            z=true;
         }else{
             if (x == 3){
                 Punktzahl[0] +=1;
                 z=true;
+                return z;
             }
             if (y == 3){
                 Punktzahl[1] +=1;
                 z=true;
+                return z;
             }
         }
         return z;
