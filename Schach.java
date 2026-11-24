@@ -2,7 +2,7 @@ import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-''// [Console]::InputEncoding = [System.Text.UTF8Encoding]::new()
+// [Console]::InputEncoding = [System.Text.UTF8Encoding]::new()
 // [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new()
 // $env:JAVA_TOOL_OPTIONS = "-Dfile.encoding=UTF-8"''
 
@@ -177,7 +177,7 @@ public static char[][] Spielfeld = {
                 if(i==a&&j==b){
                     System.out.print(PURPLE);
                 }
-                if(i==a-2 && (j==b-1||j==b+1)){
+                if((i==a+2||i==a-2) && (j==b-1||j==b+1)){
                     System.out.print(BG_GREEN);
                 }
                 char x = Spielfeld[i][j];
