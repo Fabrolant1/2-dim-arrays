@@ -138,7 +138,7 @@ class tiktaktoe{
                     vertikalx[i]++;
                 }else if (Spielfeld[i][j] == 'O'){
                     if(diagonöll==true){
-                        diagonölxr ++;
+                        diagonölyl ++;
                     }
                     if(diagonölr==true){
                         diagonölyr ++;
