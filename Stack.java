@@ -22,6 +22,7 @@ public class Stack<ContentType> {
     }
 
     private Stacknode head;
+    private int counter = 0;
     public Stack(){
         head = null;
     }
@@ -30,6 +31,7 @@ public class Stack<ContentType> {
     }
     public void push(ContentType pContent){
         if (pContent != null){
+            counter++;
             Stacknode node = new Stacknode(pContent);
             node.setNext(head);
             head=node;
@@ -42,10 +44,14 @@ public class Stack<ContentType> {
             return null ;
         }
     }
-
-
-
-
-
+    public void pop(){
+        if (!this.isEmpty()){
+            counter--;
+            head = head.getNext();
+        }
+    }
+    public int length(){
+        return counter;
+    }
 
 }

@@ -43,12 +43,13 @@ class tiktaktoe{
                 Ausgabe();
                 if(i == 0){
                     i=1;
-                }
-                if(i == 1){
+                }else if(i == 1){
                     i=0;
                 }
+                x = Gewinn();
             }
             System.out.println("Spieler 1:" + Punktzahl[0] + "Spieler2:" + Punktzahl[1]);
+            reset();
         }
     }
     public static void reset(){
